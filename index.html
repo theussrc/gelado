@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gel Gelado de Massagem — Alívio Imediato</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F6F5;
+    --mist:#E3F1EF;
+    --ink:#bdabee;
+    --teal:#664caa;
+    --teal-deep:#3c1780;
+    --ice:#bdabee;
+    --ice-soft:#C9F3EF;
+    --coral:#bdabee;
+    --coral-deep:#bdabee;
+    --line: rgba(15,33,30,0.12);
+    --radius: 18px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:500;
+  }
+  h1,h2,h3{font-family:'Unbounded',sans-serif; line-height:1.08; letter-spacing:-0.01em;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--coral); color:#fff;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:17px;
+    padding:17px 30px; border-radius:100px; border:none; cursor:pointer;
+    text-decoration:none;
+    box-shadow:0 10px 24px -8px #bdabee;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); background:var(--coral-deep); box-shadow:0 14px 30px -8px #bdabee;}
+  .btn:focus-visible{outline:3px solid var(--teal-deep); outline-offset:3px;}
+  .btn-ghost{
+    background:transparent; color:var(--teal-deep); border:1.5px solid var(--teal-deep);
+    box-shadow:none;
+  }
+  .btn-ghost:hover{background:var(--teal-deep); color:#bdabee;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,246,245,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{font-family:'Unbounded'; font-weight:700; font-size:18px; letter-spacing:-0.01em; color:var(--teal-deep);}
+  .brand span{color:var(--ice-soft); -webkit-text-stroke:1.4px var(--teal-deep); color:transparent;}
+  nav .btn{padding:11px 22px; font-size:14.5px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative; overflow:hidden;
+    padding:72px 0 60px;
+    background:
+      radial-gradient(120% 90% at 82% -10%, var(--ice-soft) 0%, rgba(201,243,239,0) 55%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+  }
+  .frost{
+    position:absolute; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(2px 2px at 10% 20%, #bdabee, transparent),
+      radial-gradient(2px 2px at 30% 65%, #bdabee, transparent),
+      radial-gradient(1.5px 1.5px at 50% 15%, #bdabee, transparent),
+      radial-gradient(2px 2px at 68% 80%, #bdabee, transparent),
+      radial-gradient(1.5px 1.5px at 85% 35%, #bdabee, transparent),
+      radial-gradient(2px 2px at 92% 70%, #bdabee, transparent);
+    animation: drift 14s linear infinite;
+    opacity:0.7;
+  }
+  @keyframes drift{ 0%{transform:translateY(0);} 100%{transform:translateY(-24px);} }
+  .hero .wrap{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .hero h1{font-size:clamp(34px,4.6vw,54px); color:var(--teal-deep); margin:16px 0 20px;}
+  .hero h1 em{font-style:normal; color:var(--coral);}
+  .hero p.lead{font-size:18px; color:#33473F; max-width:480px; margin-bottom:30px;}
+  .hero-cta-row{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .price-tag{
+    font-family:'JetBrains Mono'; font-size:14px; color:var(--teal-deep);
+  }
+  .price-tag b{font-family:'Unbounded'; font-size:20px; display:block; color:var(--coral-deep);}
+
+  .hero-visual{position:relative;}
+  .product-card{
+    background:linear-gradient(160deg, var(--mist), #ffffff 70%);
+    border-radius:28px;
+    border:1px solid var(--line);
+    padding:36px;
+    position:relative;
+    box-shadow:0 30px 60px -30px rgba(14,92,87,0.35);
+  }
+  .product-card .badge{
+    position:absolute; top:22px; right:22px;
+    background:var(--teal-deep); color:#fff; font-family:'JetBrains Mono'; font-size:12px;
+    padding:7px 12px; border-radius:100px; letter-spacing:0.05em;
+  }
+  .product-placeholder{
+    aspect-ratio:1/1; border-radius:20px;
+    background: linear-gradient(155deg, var(--ice-soft), var(--ice) 60%, var(--teal) 130%);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--teal-deep); font-family:'JetBrains Mono'; font-size:13px; text-align:center; padding:20px;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:80px 0;}
+  .section-head{max-width:600px; margin:0 auto 46px; text-align:center;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px); color:var(--teal-deep); margin-top:12px;}
+  .section-head p{color:#bdabee; font-size:16px; margin-top:14px;}
+
+  /* pain points */
+  .pain-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .pain-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px 24px;
+  }
+  .pain-card .n{font-family:'JetBrains Mono'; color:var(--ice); -webkit-text-stroke:1px var(--teal-deep); color:transparent; font-size:34px; font-weight:700; display:block; margin-bottom:10px;}
+  .pain-card h3{font-size:18px; color:var(--teal-deep); margin-bottom:8px;}
+  .pain-card p{font-size:14.5px; color:#bdabee;}
+
+  /* how it works - steps */
+  .steps-band{background:var(--teal-deep); color:#fff;}
+  .steps-band .section-head h2, .steps-band .section-head p{color:#fff;}
+  .steps-band .section-head p{color:rgba(255,255,255,0.75);}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .step{position:relative; padding-left:0;}
+  .step .num{
+    font-family:'Unbounded'; font-size:15px; width:38px; height:38px; border-radius:50%;
+    background:var(--ice); color:var(--teal-deep); display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px;
+  }
+  .step h3{font-family:'Inter'; font-weight:700; font-size:17px; margin-bottom:8px;}
+  .step p{font-size:14.5px; color:rgba(255,255,255,0.78);}
+
+  /* benefits */
+  .benefits{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center;}
+  .benefit-list{list-style:none; display:flex; flex-direction:column; gap:18px;}
+  .benefit-list li{display:flex; gap:14px; align-items:flex-start; font-size:15.5px; color:#2C433C;}
+  .check{
+    flex:none; width:26px; height:26px; border-radius:50%; background:var(--ice-soft);
+    display:flex; align-items:center; justify-content:center; color:var(--teal-deep); font-size:14px; font-weight:700;
+  }
+  .visual-block{
+    background:linear-gradient(160deg,#fff,var(--mist));
+    border-radius:24px; border:1px solid var(--line); padding:34px;
+    aspect-ratio:4/3.4; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono'; color:var(--teal); text-align:center; font-size:13px;
+  }
+
+  /* testimonials */
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .testi-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px;
+  }
+  .stars{color:var(--coral); font-size:15px; margin-bottom:12px; letter-spacing:2px;}
+  .testi-card p{font-size:14.5px; color:#3E5852; margin-bottom:16px;}
+  .testi-name{font-family:'JetBrains Mono'; font-size:12.5px; color:var(--teal-deep);}
+
+  /* guarantee / final cta */
+  .final-cta{
+    background:linear-gradient(140deg, var(--teal-deep), var(--teal) 130%);
+    border-radius:28px; padding:56px 40px; color:#fff; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .final-cta h2{font-size:clamp(26px,3.6vw,38px); margin-bottom:14px;}
+  .final-cta p{color:rgba(255,255,255,0.82); max-width:460px; margin:0 auto 30px; font-size:16px;}
+  .final-price{font-family:'Unbounded'; font-size:40px; color:var(--ice); margin-bottom:6px;}
+  .final-price-sub{font-family:'JetBrains Mono'; font-size:13px; color:rgba(255,255,255,0.65); margin-bottom:26px;}
+
+  footer{padding:36px 0 60px; text-align:center;}
+  footer p{font-size:12.5px; color:#5C736C; max-width:560px; margin:0 auto 8px;}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .pain-grid, .steps, .benefits, .testi-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">gel<span>ado</span>°</div>
+    <a href="#comprar" class="btn">Quero o meu</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="frost"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Frete Grátis para todo Brasil</span>
+      <h1>O alívio que sua rotina<br><em>pede todo dia.</em></h1>
+      <p class="lead">Gel de massagem com efeito gelado para joelhos, ombros e articulações. Aplica, sente o frescor agir, segue o dia.</p>
+      <div class="hero-cta-row">
+        <a href="#comprar" class="btn">Quero sentir o alívio →</a>
+        <div class="price-tag">a partir de<b>R$ 129,90</b></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="product-card">
+        <span class="badge">FRETE GRÁTIS</span>
+        <div class="product-placeholder"><img src="img1.png" alt="capa"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="dores">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">é assim que dói</span>
+      <h2>Você reconhece alguma dessas?</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="n">01</span>
+        <h3>Fim de dia pesado</h3>
+        <p>Aquele desconforto que aparece depois de ficar muito tempo em pé, sentado ou andando.</p>
+      </div>
+      <div class="pain-card">
+        <span class="n">02</span>
+        <h3>Escadas e agachar</h3>
+        <p>O joelho reclama nos movimentos mais simples do dia a dia.</p>
+      </div>
+      <div class="pain-card">
+        <span class="n">03</span>
+        <h3>Ombro travado</h3>
+        <p>Aquela tensão que não desgruda depois de um dia corrido ou treino puxado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--ice)">como usar</span>
+      <h2>Simples assim</h2>
+      <p>Sem procedimento, sem complicação — encaixa em qualquer rotina.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Aplique na área</h3>
+        <p>Uma quantidade generosa direto onde está o desconforto.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Massageie</h3>
+        <p>Movimentos circulares até a absorção completa — sem deixar oleosidade.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Sinta o efeito gelado</h3>
+        <p>A sensação de frescor age na hora e o alívio acompanha o resto do dia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">por que funciona</span>
+      <h2>Feito pra quem não tem tempo de parar</h2>
+    </div>
+    <div class="benefits">
+      <div class="visual-block"><img src="img2.png" alt="produto"></div>
+      <ul class="benefit-list">
+        <li><span class="check">✓</span> Efeito gelado perceptível em segundos após aplicar</li>
+        <li><span class="check">✓</span> Textura leve, absorção rápida, sem deixar a pele oleosa</li>
+        <li><span class="check">✓</span> Pode usar quantas vezes precisar ao longo do dia</li>
+        <li><span class="check">✓</span> Frasco compacto — vai na bolsa, na mochila, na mala</li>
+        <li><span class="check">✓</span> Ideal para depois de treino, dia longo em pé ou rotina puxada</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="depoimentos" style="background:var(--mist);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">quem já usa</span>
+      <h2>O que as pessoas sentem</h2>
+      <p style="font-size:13px; color:#5C736C;"></p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Uso todo dia depois do trabalho. O efeito gelado ajuda muito a relaxar no fim do dia."</p>
+        <div class="testi-name">— [Maria Lucía]</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Levo na bolsa da academia. Prático e a sensação de frescor é ótima."</p>
+        <div class="testi-name">— [Junior Alves]</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Comprei pra minha mãe e ela pediu mais um vidro depois de duas semanas."</p>
+        <div class="testi-name">— [Marina Silva]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="comprar">
+  <div class="wrap">
+    <div class="final-cta">
+      <span class="eyebrow" style="color:var(--ice)">peça o seu agora</span>
+      <h2>Sinta o alívio gelado hoje mesmo</h2>
+      <p>Frasco individual, envio rápido e pagamento seguro.</p>
+      <div class="final-price">R$ 129,90</div>
+      <div class="final-price-sub">em até 12x no cartão · frete grátis · 7 Dias de Garantia</div>
+      <a href="https://pay.kaiross.com.br/5t9vM4XhRABv" class="btn">Quero o meu Gel Agora →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Este produto não substitui acompanhamento médico ou fisioterapêutico. Em caso de dor persistente, procure orientação profissional.</p>
+    <p>© 2026 — Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+</body>
+</html>
