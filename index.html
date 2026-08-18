@@ -7,6 +7,40 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="icon" type="imagem/png" href="creme-noturno.png">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- ===================================================================
+     META PIXEL (Facebook Ads)
+     1) Troque SEU_PIXEL_ID_AQUI pelo ID do seu pixel (Gerenciador de Eventos
+        do Meta > Conectar fontes de dados > Web > seu pixel).
+     2) O evento ViewContent já dispara sozinho quando a página carrega.
+     3) O evento InitiateCheckout dispara sozinho nos botões de compra
+        (procure por data-track="checkout" mais abaixo no HTML).
+     4) O evento Purchase NÃO dá pra colocar aqui, porque a compra acontece
+        na página de checkout da Kaiross (outro domínio, fora do seu
+        controle). Veja o README para saber como resolver isso.
+     =================================================================== -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1055815123808087');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'Gel Gelado de Massagem - Joelhos, Ombros e Articulações',
+  content_type: 'product',
+  content_ids: ['gel-gelado-massagem'],
+  currency: 'BRL',
+  value: 129.90
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1055815123808087&ev=PageView&noscript=1"
+/></noscript>
+<!-- ===================== FIM DO META PIXEL ===================== -->
 <style>
   :root{
     --bg:#F2F6F5;
